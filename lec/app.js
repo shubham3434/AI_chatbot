@@ -1,19 +1,13 @@
 import 'dotenv/config';
-
 import readline from "node:readline/promises";
-
 import { tavily } from "@tavily/core";
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
-
-
 import Groq from "groq-sdk/index.mjs";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 
 async function main() {
-
     const rl = readline.createInterface({input:process.stdin,output:process.stdout});
-
     const  messages=[
         {
             role:"system",

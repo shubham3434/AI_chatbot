@@ -21,7 +21,8 @@ export async function generate(userMessage,threadId) {
             role:"system",
             content:`you are jarvish a smart personal assistant who can answers asked questions and 
             you have access to the following functions :-1.webSearch({query}:{query:string})  //Search the latest information and realtime data from the internet
-            current date and time: ${new Date().toUTCString()}`
+            current date and time: ${new Date().toUTCString()} 
+            when user ask for webSearch then don't return query <function=webSearch{"query": "joke of the day"}</function> like this go for web searach and give the answer`
         },
         // {
         //     role:"user",
@@ -52,8 +53,9 @@ export async function generate(userMessage,threadId) {
 
     const completions=await groq.chat.completions.create({
         temperature:0,
-        max_tokens:200,
-        model:"llama-3.3-70b-versatile",
+        max_tokens:500,
+        // model:"llama-3.3-70b-versatile",
+        model:"openai/gpt-oss-20b",
         messages:messages,
         "tools": [
             {
